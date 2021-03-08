@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StatisticsMenu">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/tr_st"
+            android:text="Статистика тренировок"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:id="@+id/full_st"
+            android:layout_width="200dp"
+            android:text="Статистика по всем заданиям"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            />
+
+
+
+    </LinearLayout>
+
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
