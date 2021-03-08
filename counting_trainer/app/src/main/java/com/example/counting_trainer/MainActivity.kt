@@ -19,6 +19,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,StatisticsMenu::class.java)
             startActivity(intent)
         }
+        take_knowledge.setOnClickListener {
+            val intent = Intent(this,TheoryActivity::class.java)
+            startActivity(intent)
+        }
+        training.setOnClickListener {
+            val intent = Intent(this,TrainingActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
