@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,TrainingActivity::class.java)
             startActivity(intent)
         }
+        lvlup.setOnClickListener {
+            val intent = Intent(this,LvlupActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
