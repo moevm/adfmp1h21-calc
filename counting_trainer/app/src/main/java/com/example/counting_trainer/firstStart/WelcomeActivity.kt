@@ -19,6 +19,8 @@ class WelcomeActivity : AppCompatActivity() {
         }
         test.setOnClickListener {
             val intent = Intent(this, LvlupActivity::class.java)
+            intent.putExtra("lvl", 2)
+            intent.putExtra("first start", true)
             startActivity(intent)
         }
     }
