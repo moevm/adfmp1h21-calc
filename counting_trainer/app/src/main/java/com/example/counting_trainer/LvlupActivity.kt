@@ -170,6 +170,7 @@ class LvlupActivity : AppCompatActivity() {
             }
             else {
                 val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtra("points", points )
                 startActivity(intent)
             }
         }
