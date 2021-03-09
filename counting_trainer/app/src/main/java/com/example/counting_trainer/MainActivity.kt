@@ -21,7 +21,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         var lvl:Int = prefs.getInt("lvl", 1)
-        toolbar.tooltext.text = "Привет, ваш уровень - " + lvl.toString()
+        when (lvl) {
+            1-> toolbar.tooltext.text = "Привет, ваш уровень - Начинающий"
+            2-> toolbar.tooltext.text = "Привет, ваш уровень - Средний"
+            3-> toolbar.tooltext.text = "Привет, ваш уровень - Сверхразум"
+
+        }
         statistics.setOnClickListener {
             val intent = Intent(this,StatisticsMenu::class.java)
             startActivity(intent)
@@ -32,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
         training.setOnClickListener {
             val intent = Intent(this,TrainingActivity::class.java)
+            intent.putExtra("lvl", lvl)
             startActivity(intent)
         }
         lvlup.setOnClickListener {
