@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Counting_trainer">
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".firstStart.FirstResult"></activity>
+        <activity android:name=".firstStart.ChooseActivity" />
+        <activity android:name=".firstStart.WelcomeActivity" />
+        <activity android:name=".ResultActivity" />
         <activity android:name=".LvlupActivity" />
         <activity android:name=".TrainingActivity" />
         <activity android:name=".TheoryActivity" />
