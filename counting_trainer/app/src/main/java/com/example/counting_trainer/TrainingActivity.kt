@@ -53,7 +53,7 @@ class TrainingActivity : AppCompatActivity() {
         }
 
         pass.setOnClickListener {
-            answer.setBackgroundColor(Color.YELLOW)
+            answer.setBackgroundColor(Color.BLUE)
             answer.text = ""
             arrayTask = generateTaskText(lvl)
           }
