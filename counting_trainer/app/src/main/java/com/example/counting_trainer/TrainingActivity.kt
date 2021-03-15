@@ -42,12 +42,9 @@ class TrainingActivity : AppCompatActivity() {
                 }
                 else {
                     answer.setBackgroundColor(Color.RED)
-                    if (!answer.text.toString().isEmpty()){
-                        when {
-                            abs(arrayTask[3] - answer.text.toString().toInt()) < 3 -> hint.text = "Вы близки к правильному ответу!"
-                            abs(arrayTask[3] - answer.text.toString().toInt()) < 10 -> hint.text = "Умеренная ошибка!"
-                            abs(arrayTask[3] - answer.text.toString().toInt()) >= 10 -> hint.text = "Грубая ошибка!"
-                        }
+                    val checkedAnswer = TaskHelper.checkSizeError(arrayTask, answer.text.toString())
+                    if (!checkedAnswer.isEmpty()){
+                        hint.text = checkedAnswer
                     }
                 }
         }
@@ -75,20 +72,6 @@ class TrainingActivity : AppCompatActivity() {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-
-
-    }
-
-    fun checkSizeError(arrayTask:Array<Int>, textAnswer: String): String {
-        var sizeError: String = ""
-        if (!textAnswer.isEmpty()) {
-            when {
-                abs(arrayTask[3] - textAnswer.toInt()) < 3 -> sizeError = "Вы близки к правильному ответу!"
-                abs(arrayTask[3] - textAnswer.toInt()) < 10 -> sizeError = "Умеренная ошибка!"
-                abs(arrayTask[3] - textAnswer.toInt()) >= 10 -> sizeError = "Грубая ошибка!"
-            }
-        }
-        return sizeError;
     }
 
     fun digit(view: View){

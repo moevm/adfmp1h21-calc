@@ -107,5 +107,17 @@ class TaskHelper(lvl:Int) {
 
             return arrayOf(first_number,second_number,action,result)
         }
+
+        fun checkSizeError(arrayTask:Array<Int>, textAnswer: String): String {
+            var sizeError: String = ""
+            if (!textAnswer.isEmpty()) {
+                when {
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) < 3 -> sizeError = "Вы близки к правильному ответу!"
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) < 10 -> sizeError = "Умеренная ошибка!"
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) >= 10 -> sizeError = "Грубая ошибка!"
+                }
+            }
+            return sizeError;
+        }
     }
 }

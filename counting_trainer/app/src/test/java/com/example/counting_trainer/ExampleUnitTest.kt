@@ -4,6 +4,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import com.example.counting_trainer.helpers.TaskHelper
+import com.example.counting_trainer.TrainingActivity
 import kotlinx.android.synthetic.main.activity_lvlup.*
 
 /**
@@ -108,5 +109,49 @@ class ExampleUnitTest {
         // println("${resultGenerate} ${isNormalLvL} ${arrayTask[0]} ${arrayTask[1]} ${arrayTask[2]} ${arrayTask[3]}")
         assertEquals(arrayTask[3], resultGenerate)
         assertEquals(true, isNormalLvL)
+    }
+
+    @Test
+    fun testingCheckAnswerUser() {
+        // Lvl - medium
+        var resultGenerate: Int? = null;
+        var isNormalLvL: Boolean = false
+        var arrayTask:Array<Int> = TaskHelper.generateTask(2)
+        if (arrayTask !== null) {
+            when (arrayTask[2]) {
+                1 -> {
+                    resultGenerate = arrayTask[0] + arrayTask[1]
+                    isNormalLvL = resultGenerate <= 200
+                }
+                2 -> {
+                    resultGenerate = arrayTask[0] - arrayTask[1]
+                    isNormalLvL = resultGenerate <= 100 && resultGenerate >= -80
+                }
+                3 -> {
+                    resultGenerate = arrayTask[0] * arrayTask[1]
+                    isNormalLvL = resultGenerate <= 400 && resultGenerate >= 0
+                }
+                4 -> {
+                    if (arrayTask[1] !== 0) {
+                        resultGenerate = arrayTask[0] / arrayTask[1]
+                        isNormalLvL = resultGenerate <= 400 && resultGenerate >= 0
+                    }
+                }
+            }
+        }
+        // println("${resultGenerate} ${isNormalLvL} ${arrayTask[0]} ${arrayTask[1]} ${arrayTask[2]} ${arrayTask[3]}")
+        assertEquals(arrayTask[3], resultGenerate)
+        assertEquals(true, isNormalLvL)
+        assertEquals("", "")
+        assertEquals("Вы близки к правильному ответу!",
+            TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 2).toString()))
+        assertEquals("Умеренная ошибка!",
+            TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 3).toString()))
+        assertEquals("Умеренная ошибка!",
+            TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 9).toString()))
+        assertEquals("Грубая ошибка!",
+            TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 10).toString()))
+        assertEquals("Грубая ошибка!",
+            TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 11).toString()))
     }
 }
