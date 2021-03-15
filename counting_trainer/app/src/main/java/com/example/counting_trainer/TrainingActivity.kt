@@ -40,7 +40,7 @@ class TrainingActivity : AppCompatActivity() {
                     answer.text = ""
                     arrayTask = generateTaskText(lvl)
                 }
-                else{
+                else {
                     answer.setBackgroundColor(Color.RED)
                     if (!answer.text.toString().isEmpty()){
                         when {
@@ -77,6 +77,18 @@ class TrainingActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    fun checkSizeError(arrayTask:Array<Int>, textAnswer: String): String {
+        var sizeError: String = ""
+        if (!textAnswer.isEmpty()) {
+            when {
+                abs(arrayTask[3] - textAnswer.toInt()) < 3 -> sizeError = "Вы близки к правильному ответу!"
+                abs(arrayTask[3] - textAnswer.toInt()) < 10 -> sizeError = "Умеренная ошибка!"
+                abs(arrayTask[3] - textAnswer.toInt()) >= 10 -> sizeError = "Грубая ошибка!"
+            }
+        }
+        return sizeError;
     }
 
     fun digit(view: View){
