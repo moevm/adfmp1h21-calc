@@ -19,7 +19,6 @@
         <activity android:name=".FullStatistics" />
         <activity android:name=".TrainingStatistics" />
         <activity android:name=".StatisticsMenu" />
-        <activity android:name=".helpers.Toolbar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

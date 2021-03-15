@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_lvlup.task
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_theory.*
-import kotlinx.android.synthetic.main.activity_theory.to_main
+//import kotlinx.android.synthetic.main.activity_theory.to_main
 import kotlinx.android.synthetic.main.activity_training.*
 import kotlinx.android.synthetic.main.keybord.*
 import kotlinx.android.synthetic.main.toolbar.*

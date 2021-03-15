@@ -13,23 +13,16 @@
         android:layout_centerVertical="true"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/to_main"
-            android:text="В главное меню"
-            android:layout_width="200dp"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            />
-        <Button
-            android:id="@+id/next"
-            android:text="Далее"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            />
+            android:textSize="30sp"/>
 
+
+        <WebView
+            android:id="@+id/webViewTheory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
     </LinearLayout>
