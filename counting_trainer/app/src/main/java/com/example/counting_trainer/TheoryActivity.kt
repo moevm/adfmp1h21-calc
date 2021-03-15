@@ -24,6 +24,7 @@ class TheoryActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        //End toolbar
 
         prefs = getSharedPreferences("lvl", MODE_PRIVATE)
         if (prefs.getInt("lvl", 0 ) == 0 ) {
@@ -32,13 +33,10 @@ class TheoryActivity : AppCompatActivity() {
         }
         var lvl:Int = prefs.getInt("lvl", 1)
 
-        webViewTheory.loadUrl("file:///android_asset/web/noobTheory.html")
-        //End toolbar
-//        to_main.setOnClickListener {
-//            val intent = Intent(this,MainActivity::class.java)
-//            startActivity(intent)
-//        }
-//        next.setOnClickListener {  }
-
+        when (lvl) {
+            1-> webViewTheory.loadUrl("file:///android_asset/web/noobTheory.html")
+            2-> webViewTheory.loadUrl("file:///android_asset/web/mediumTheory.html")
+            3-> webViewTheory.loadUrl("file:///android_asset/web/supermindTheory.html")
+        }
     }
 }

@@ -52,13 +52,5 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("lvl", lvl)
             startActivity(intent)
         }
-
-
-
-
-
-
-
-
     }
 }
