@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_result.*
+import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 
 class ResultActivity : AppCompatActivity() {
@@ -15,10 +16,17 @@ class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
+        // Настройка toolbar
+        to_home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        //End toolbar
         prefs = getSharedPreferences("lvl", MODE_PRIVATE)
         val success:String = "Уровень повышен!"
         val fail:String = "Тренируйтесь усерднее!"
         var currentLvl = prefs.getInt("lvl",1)
+
 
         val getIntent = intent
         val points = getIntent.getIntExtra("points", 0)

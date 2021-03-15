@@ -3,6 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/purple_500">
+    <Button
+        android:id="@+id/to_home"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:drawableLeft="@drawable/ic_baseline_home_24"
+        />
     <TextView
         android:id="@+id/tooltext"
         android:layout_width="match_parent"

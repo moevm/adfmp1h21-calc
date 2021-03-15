@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_theory.*
 import kotlinx.android.synthetic.main.activity_theory.to_main
 import kotlinx.android.synthetic.main.activity_training.*
 import kotlinx.android.synthetic.main.keybord.*
+import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import java.lang.Math.abs
 
@@ -23,7 +24,13 @@ class TrainingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
+        // Настройка toolbar
         toolbar.tooltext.text = "Тренировка!"
+        to_home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        //End toolbar
         var points:Int = 0
         val intentWithLvl = getIntent()
         val lvl = intentWithLvl.getIntExtra("lvl", 1)

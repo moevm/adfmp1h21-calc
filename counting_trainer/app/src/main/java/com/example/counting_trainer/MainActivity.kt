@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.counting_trainer.firstStart.WelcomeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.view.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +16,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // Настройка toolbar
+        to_home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        //End toolbar
         prefs = getSharedPreferences("lvl", MODE_PRIVATE)
         if (prefs.getInt("lvl", 0 ) == 0 ) {
             val intent = Intent(this,WelcomeActivity::class.java)
