@@ -6,6 +6,7 @@ import org.junit.Assert.*
 import com.example.counting_trainer.helpers.TaskHelper
 import com.example.counting_trainer.TrainingActivity
 import com.example.counting_trainer.helpers.UpLvlEnum
+import com.example.counting_trainer.helpers.SizeErorEnum
 import kotlinx.android.synthetic.main.activity_lvlup.*
 
 /**
@@ -144,15 +145,15 @@ class ExampleUnitTest {
         assertEquals(arrayTask[3], resultGenerate)
         assertEquals(true, isNormalLvL)
         assertEquals("", "")
-        assertEquals("Вы близки к правильному ответу!",
+        assertEquals(SizeErorEnum.NEAR.str,
             TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 2).toString()))
-        assertEquals("Умеренная ошибка!",
+        assertEquals(SizeErorEnum.MEDIUM.str,
             TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 3).toString()))
-        assertEquals("Умеренная ошибка!",
+        assertEquals(SizeErorEnum.MEDIUM.str,
             TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 9).toString()))
-        assertEquals("Грубая ошибка!",
+        assertEquals(SizeErorEnum.HIGH.str,
             TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 10).toString()))
-        assertEquals("Грубая ошибка!",
+        assertEquals(SizeErorEnum.HIGH.str,
             TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 11).toString()))
     }
 

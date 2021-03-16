@@ -1,5 +1,6 @@
 package com.example.counting_trainer.helpers
 import com.example.counting_trainer.helpers.UpLvlEnum
+import com.example.counting_trainer.helpers.SizeErorEnum
 
 class TaskHelper(lvl:Int) {
     companion object Factory{
@@ -108,12 +109,12 @@ class TaskHelper(lvl:Int) {
         }
 
         fun checkSizeError(arrayTask:Array<Int>, textAnswer: String): String {
-            var sizeError: String = ""
+            var sizeError = ""
             if (!textAnswer.isEmpty()) {
                 when {
-                    Math.abs(arrayTask[3] - textAnswer.toInt()) < 3 -> sizeError = "Вы близки к правильному ответу!"
-                    Math.abs(arrayTask[3] - textAnswer.toInt()) < 10 -> sizeError = "Умеренная ошибка!"
-                    Math.abs(arrayTask[3] - textAnswer.toInt()) >= 10 -> sizeError = "Грубая ошибка!"
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) < 3 -> sizeError = SizeErorEnum.NEAR.str
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) < 10 -> sizeError = SizeErorEnum.MEDIUM.str
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) >= 10 -> sizeError = SizeErorEnum.HIGH.str
                 }
             }
             return sizeError;

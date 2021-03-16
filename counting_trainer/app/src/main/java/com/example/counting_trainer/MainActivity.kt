@@ -8,6 +8,7 @@ import com.example.counting_trainer.firstStart.WelcomeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import kotlinx.android.synthetic.main.toolbar.*
+import com.example.counting_trainer.helpers.CurrentLvlEnum
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,10 +30,9 @@ class MainActivity : AppCompatActivity() {
         }
         var lvl:Int = prefs.getInt("lvl", 1)
         when (lvl) {
-            1-> toolbar.tooltext.text = "Привет, ваш уровень - Начинающий"
-            2-> toolbar.tooltext.text = "Привет, ваш уровень - Средний"
-            3-> toolbar.tooltext.text = "Привет, ваш уровень - Сверхразум"
-
+            1-> toolbar.tooltext.text = CurrentLvlEnum.NOOB_LVL.str
+            2-> toolbar.tooltext.text = CurrentLvlEnum.MEDIUM_LVL.str
+            3-> toolbar.tooltext.text = CurrentLvlEnum.SUPERMIND_LVL.str
         }
         statistics.setOnClickListener {
             val intent = Intent(this,StatisticsMenu::class.java)

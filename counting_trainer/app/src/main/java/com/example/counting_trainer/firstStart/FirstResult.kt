@@ -1,6 +1,5 @@
 package com.example.counting_trainer.firstStart
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +8,7 @@ import com.example.counting_trainer.MainActivity
 import com.example.counting_trainer.R
 import kotlinx.android.synthetic.main.activity_result.*
 import kotlinx.android.synthetic.main.toolbar.view.*
+import com.example.counting_trainer.helpers.ProcessedLvlEnum
 
 class FirstResult : AppCompatActivity() {
 
@@ -26,17 +26,17 @@ class FirstResult : AppCompatActivity() {
         score.text = "Ваши Баллы:$points"
         when {
             points > 9 -> {
-                restext.text = "Ваш уровень: Сверхразум"
+                restext.text = ProcessedLvlEnum.SUPERMIND_LVL.str
                 editor.putInt("lvl", 3)
                 editor.commit()
             }
             points > 6 -> {
-                restext.text = "Ваш уровень: Средний"
+                restext.text = ProcessedLvlEnum.MEDIUM_LVL.str
                 editor.putInt("lvl", 2)
                 editor.commit()
             }
             points >= 0 -> {
-                restext.text = "Ваш уровень: Начинающий"
+                restext.text = ProcessedLvlEnum.NOOB_LVL.str
                 editor.putInt("lvl", 1)
                 editor.commit()
             }
