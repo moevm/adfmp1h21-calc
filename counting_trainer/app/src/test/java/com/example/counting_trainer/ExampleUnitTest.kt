@@ -161,14 +161,27 @@ class ExampleUnitTest {
         val secondFailStr = "Тренируйтесь усерднее!";
         val firstSuccessStr = "Поздравляем, тест пройден!\n Ваш уровень повышен";
         val secondSuccessStr = "Уровень повышен!";
-        val resFalseOne = TaskHelper.lvlUpCheck(7)
-        val resFalseTwo = TaskHelper.lvlUpCheck(8)
-        val resFalseThree = TaskHelper.lvlUpCheck(9)
+        val firstSupermindStr = "Поздравляем, тест пройден!\n Теперь выше вас, только звёзды!"
+        val secondSuperminStr = "Это максимальный уровень!"
+        var lvl = 2
+        var resFalseOne = TaskHelper.lvlUpCheck(7, lvl)
+        var resFalseTwo = TaskHelper.lvlUpCheck(8, lvl)
+        var resFalseThree = TaskHelper.lvlUpCheck(9, lvl)
         assertEquals(firstFailStr, resFalseOne[0])
         assertEquals(secondFailStr, resFalseOne[1])
         assertEquals(firstSuccessStr, resFalseTwo[0])
         assertEquals(secondSuccessStr, resFalseTwo[1])
         assertEquals(firstSuccessStr, resFalseThree[0])
         assertEquals(secondSuccessStr, resFalseThree[1])
+        lvl = 3
+        resFalseOne = TaskHelper.lvlUpCheck(7, lvl)
+        resFalseTwo = TaskHelper.lvlUpCheck(8, lvl)
+        resFalseThree = TaskHelper.lvlUpCheck(9, lvl)
+        assertEquals(firstFailStr, resFalseOne[0])
+        assertEquals(secondFailStr, resFalseOne[1])
+        assertEquals(firstSupermindStr, resFalseTwo[0])
+        assertEquals(secondSuperminStr, resFalseTwo[1])
+        assertEquals(firstSupermindStr, resFalseThree[0])
+        assertEquals(secondSuperminStr, resFalseThree[1])
     }
 }

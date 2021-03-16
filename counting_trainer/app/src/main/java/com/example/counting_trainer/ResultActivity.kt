@@ -30,11 +30,11 @@ class ResultActivity : AppCompatActivity() {
         val getIntent = intent
         val points = getIntent.getIntExtra("points", 0)
         score.text = "Ваши Баллы:$points"
-        val resultTest = TaskHelper.lvlUpCheck(points)
+        val resultTest = TaskHelper.lvlUpCheck(points, currentLvl)
         if (points >= 8 ) {
             restext.text = resultTest[0]
             toolbar.tooltext.text = resultTest[1]
-            if (currentLvl <3){
+            if (currentLvl < 3) {
                 var editor = prefs.edit()
                 editor.putInt("lvl", currentLvl+1)
                 editor.commit()

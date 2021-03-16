@@ -123,7 +123,7 @@ class TaskHelper(lvl:Int) {
             return sizeError;
         }
 
-        fun lvlUpCheck(points: Int): Array<String> {
+        fun lvlUpCheck(points: Int, currentLvl: Int): Array<String> {
             var resultText = ""
             val success:String = "Уровень повышен!"
             val fail:String = "Тренируйтесь усерднее!"
@@ -131,6 +131,10 @@ class TaskHelper(lvl:Int) {
             if (points >= 8 ) {
                 resultText = "Поздравляем, тест пройден!\n Ваш уровень повышен"
                 secondText = success
+                if (currentLvl >= 3) {
+                    resultText = "Поздравляем, тест пройден!\n Теперь выше вас, только звёзды!"
+                    secondText = "Это максимальный уровень!"
+                }
             }
             else {
                 resultText = "Вы не набрали достаточного количества баллов для повышения.\n Тренируйтесь усердней"
