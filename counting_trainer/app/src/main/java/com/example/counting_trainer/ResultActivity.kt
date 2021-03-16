@@ -32,8 +32,8 @@ class ResultActivity : AppCompatActivity() {
         score.text = "Ваши Баллы:$points"
         val resultTest = TaskHelper.lvlUpCheck(points, currentLvl)
         if (points >= 8 ) {
-            restext.text = resultTest[0]
-            toolbar.tooltext.text = resultTest[1]
+            restext.text = resultTest[0].str
+            toolbar.tooltext.text = resultTest[1].str
             if (currentLvl < 3) {
                 var editor = prefs.edit()
                 editor.putInt("lvl", currentLvl+1)
@@ -41,8 +41,8 @@ class ResultActivity : AppCompatActivity() {
             }
         }
         else {
-            restext.text = resultTest[0]
-            toolbar.tooltext.text = resultTest[1]
+            restext.text = resultTest[0].str
+            toolbar.tooltext.text = resultTest[1].str
         }
 
         to_main.setOnClickListener {

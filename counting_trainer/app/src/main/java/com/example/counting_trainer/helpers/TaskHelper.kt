@@ -1,9 +1,5 @@
 package com.example.counting_trainer.helpers
-
-import kotlinx.android.synthetic.main.activity_lvlup.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_result.*
-import kotlinx.android.synthetic.main.toolbar.view.*
+import com.example.counting_trainer.helpers.UpLvlEnum
 
 class TaskHelper(lvl:Int) {
     companion object Factory{
@@ -123,22 +119,20 @@ class TaskHelper(lvl:Int) {
             return sizeError;
         }
 
-        fun lvlUpCheck(points: Int, currentLvl: Int): Array<String> {
-            var resultText = ""
-            val success:String = "Уровень повышен!"
-            val fail:String = "Тренируйтесь усерднее!"
-            var secondText = ""
+        fun lvlUpCheck(points: Int, currentLvl: Int): Array<UpLvlEnum> {
+            var resultText: UpLvlEnum;
+            var secondText: UpLvlEnum
             if (points >= 8 ) {
-                resultText = "Поздравляем, тест пройден!\n Ваш уровень повышен"
-                secondText = success
+                resultText =  UpLvlEnum.FIRST_SUCCESS_STR
+                secondText = UpLvlEnum.SECOND_SUCCESS_STR
                 if (currentLvl >= 3) {
-                    resultText = "Поздравляем, тест пройден!\n Теперь выше вас, только звёзды!"
-                    secondText = "Это максимальный уровень!"
+                    resultText = UpLvlEnum.FIRST_SUPERMIND_STR
+                    secondText = UpLvlEnum.SECOND_SUPERMIND_STR
                 }
             }
             else {
-                resultText = "Вы не набрали достаточного количества баллов для повышения.\n Тренируйтесь усердней"
-                secondText = fail
+                resultText = UpLvlEnum.FIRST_FAIL_STR
+                secondText = UpLvlEnum.SECOND_FAIL_STR
             }
             return arrayOf(resultText, secondText)
         }

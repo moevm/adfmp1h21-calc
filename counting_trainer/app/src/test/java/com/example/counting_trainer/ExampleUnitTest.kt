@@ -5,6 +5,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import com.example.counting_trainer.helpers.TaskHelper
 import com.example.counting_trainer.TrainingActivity
+import com.example.counting_trainer.helpers.UpLvlEnum
 import kotlinx.android.synthetic.main.activity_lvlup.*
 
 /**
@@ -157,31 +158,26 @@ class ExampleUnitTest {
 
     @Test
     fun testingUpLvl() {
-        val firstFailStr = "Вы не набрали достаточного количества баллов для повышения.\n Тренируйтесь усердней";
-        val secondFailStr = "Тренируйтесь усерднее!";
-        val firstSuccessStr = "Поздравляем, тест пройден!\n Ваш уровень повышен";
-        val secondSuccessStr = "Уровень повышен!";
-        val firstSupermindStr = "Поздравляем, тест пройден!\n Теперь выше вас, только звёзды!"
-        val secondSuperminStr = "Это максимальный уровень!"
         var lvl = 2
         var resFalseOne = TaskHelper.lvlUpCheck(7, lvl)
         var resFalseTwo = TaskHelper.lvlUpCheck(8, lvl)
         var resFalseThree = TaskHelper.lvlUpCheck(9, lvl)
-        assertEquals(firstFailStr, resFalseOne[0])
-        assertEquals(secondFailStr, resFalseOne[1])
-        assertEquals(firstSuccessStr, resFalseTwo[0])
-        assertEquals(secondSuccessStr, resFalseTwo[1])
-        assertEquals(firstSuccessStr, resFalseThree[0])
-        assertEquals(secondSuccessStr, resFalseThree[1])
+        assertEquals(UpLvlEnum.FIRST_FAIL_STR, resFalseOne[0])
+        assertEquals(UpLvlEnum.SECOND_FAIL_STR, resFalseOne[1])
+        assertEquals(UpLvlEnum.FIRST_SUCCESS_STR, resFalseTwo[0])
+        assertEquals(UpLvlEnum.SECOND_SUCCESS_STR, resFalseTwo[1])
+        assertEquals(UpLvlEnum.FIRST_SUCCESS_STR, resFalseThree[0])
+        assertEquals(UpLvlEnum.SECOND_SUCCESS_STR, resFalseThree[1])
+
         lvl = 3
         resFalseOne = TaskHelper.lvlUpCheck(7, lvl)
         resFalseTwo = TaskHelper.lvlUpCheck(8, lvl)
         resFalseThree = TaskHelper.lvlUpCheck(9, lvl)
-        assertEquals(firstFailStr, resFalseOne[0])
-        assertEquals(secondFailStr, resFalseOne[1])
-        assertEquals(firstSupermindStr, resFalseTwo[0])
-        assertEquals(secondSuperminStr, resFalseTwo[1])
-        assertEquals(firstSupermindStr, resFalseThree[0])
-        assertEquals(secondSuperminStr, resFalseThree[1])
+        assertEquals(UpLvlEnum.FIRST_FAIL_STR, resFalseOne[0])
+        assertEquals(UpLvlEnum.SECOND_FAIL_STR, resFalseOne[1])
+        assertEquals(UpLvlEnum.FIRST_SUPERMIND_STR, resFalseTwo[0])
+        assertEquals(UpLvlEnum.SECOND_SUPERMIND_STR, resFalseTwo[1])
+        assertEquals(UpLvlEnum.FIRST_SUPERMIND_STR, resFalseThree[0])
+        assertEquals(UpLvlEnum.SECOND_SUPERMIND_STR, resFalseThree[1])
     }
 }
