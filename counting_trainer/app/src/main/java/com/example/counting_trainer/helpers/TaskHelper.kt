@@ -1,6 +1,6 @@
 package com.example.counting_trainer.helpers
-
-import kotlinx.android.synthetic.main.activity_lvlup.*
+import com.example.counting_trainer.helpers.UpLvlEnum
+import com.example.counting_trainer.helpers.SizeErorEnum
 
 class TaskHelper(lvl:Int) {
     companion object Factory{
@@ -106,6 +106,36 @@ class TaskHelper(lvl:Int) {
             }
 
             return arrayOf(first_number,second_number,action,result)
+        }
+
+        fun checkSizeError(arrayTask:Array<Int>, textAnswer: String): String {
+            var sizeError = ""
+            if (!textAnswer.isEmpty()) {
+                when {
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) < 3 -> sizeError = SizeErorEnum.NEAR.str
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) < 10 -> sizeError = SizeErorEnum.MEDIUM.str
+                    Math.abs(arrayTask[3] - textAnswer.toInt()) >= 10 -> sizeError = SizeErorEnum.HIGH.str
+                }
+            }
+            return sizeError;
+        }
+
+        fun lvlUpCheck(points: Int, currentLvl: Int): Array<UpLvlEnum> {
+            var resultText: UpLvlEnum;
+            var secondText: UpLvlEnum
+            if (points >= 8 ) {
+                resultText =  UpLvlEnum.FIRST_SUCCESS_STR
+                secondText = UpLvlEnum.SECOND_SUCCESS_STR
+                if (currentLvl >= 3) {
+                    resultText = UpLvlEnum.FIRST_SUPERMIND_STR
+                    secondText = UpLvlEnum.SECOND_SUPERMIND_STR
+                }
+            }
+            else {
+                resultText = UpLvlEnum.FIRST_FAIL_STR
+                secondText = UpLvlEnum.SECOND_FAIL_STR
+            }
+            return arrayOf(resultText, secondText)
         }
     }
 }

@@ -12,6 +12,7 @@ import com.example.counting_trainer.helpers.TaskHelper
 import kotlinx.android.synthetic.main.activity_lvlup.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.keybord.*
+import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 
 
@@ -22,6 +23,12 @@ class LvlupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lvlup)
+        // Настройка toolbar
+        to_home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        //End toolbar
         val intentWithLvl = getIntent()
         val lvl = intentWithLvl.getIntExtra("lvl", 1)
         if (intentWithLvl.getBooleanExtra("first start", false)) {

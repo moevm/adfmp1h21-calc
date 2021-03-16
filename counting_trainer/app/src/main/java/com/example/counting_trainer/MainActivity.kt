@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.counting_trainer.firstStart.WelcomeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.view.*
+import kotlinx.android.synthetic.main.toolbar.*
+import com.example.counting_trainer.helpers.CurrentLvlEnum
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +17,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // Настройка toolbar
+        to_home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        //End toolbar
         prefs = getSharedPreferences("lvl", MODE_PRIVATE)
         if (prefs.getInt("lvl", 0 ) == 0 ) {
             val intent = Intent(this,WelcomeActivity::class.java)
@@ -22,10 +30,9 @@ class MainActivity : AppCompatActivity() {
         }
         var lvl:Int = prefs.getInt("lvl", 1)
         when (lvl) {
-            1-> toolbar.tooltext.text = "Привет, ваш уровень - Начинающий"
-            2-> toolbar.tooltext.text = "Привет, ваш уровень - Средний"
-            3-> toolbar.tooltext.text = "Привет, ваш уровень - Сверхразум"
-
+            1-> toolbar.tooltext.text = CurrentLvlEnum.NOOB_LVL.str
+            2-> toolbar.tooltext.text = CurrentLvlEnum.MEDIUM_LVL.str
+            3-> toolbar.tooltext.text = CurrentLvlEnum.SUPERMIND_LVL.str
         }
         statistics.setOnClickListener {
             val intent = Intent(this,StatisticsMenu::class.java)
@@ -45,13 +52,5 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("lvl", lvl)
             startActivity(intent)
         }
-
-
-
-
-
-
-
-
     }
 }

@@ -7,15 +7,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.example.counting_trainer.helpers.TaskHelper
-import kotlinx.android.synthetic.main.activity_lvlup.*
 import kotlinx.android.synthetic.main.activity_lvlup.answer
 import kotlinx.android.synthetic.main.activity_lvlup.task
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
-import kotlinx.android.synthetic.main.activity_theory.*
-import kotlinx.android.synthetic.main.activity_theory.to_main
 import kotlinx.android.synthetic.main.activity_training.*
 import kotlinx.android.synthetic.main.keybord.*
+import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import java.lang.Math.abs
 
@@ -23,7 +20,13 @@ class TrainingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
+        // Настройка toolbar
         toolbar.tooltext.text = "Тренировка!"
+        to_home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        //End toolbar
         var points:Int = 0
         val intentWithLvl = getIntent()
         val lvl = intentWithLvl.getIntExtra("lvl", 1)
@@ -37,20 +40,17 @@ class TrainingActivity : AppCompatActivity() {
                     answer.text = ""
                     arrayTask = generateTaskText(lvl)
                 }
-                else{
+                else {
                     answer.setBackgroundColor(Color.RED)
-                    if (!answer.text.toString().isEmpty()){
-                        when {
-                            abs(arrayTask[3] - answer.text.toString().toInt()) < 3 -> hint.text = "Вы близки к правильному ответу!"
-                            abs(arrayTask[3] - answer.text.toString().toInt()) < 10 -> hint.text = "Умеренная ошибка!"
-                            abs(arrayTask[3] - answer.text.toString().toInt()) >= 10 -> hint.text = "Грубая ошибка!"
-                        }
+                    val checkedAnswer = TaskHelper.checkSizeError(arrayTask, answer.text.toString())
+                    if (!checkedAnswer.isEmpty()){
+                        hint.text = checkedAnswer
                     }
                 }
         }
 
         pass.setOnClickListener {
-            answer.setBackgroundColor(Color.WHITE)
+            answer.setBackgroundColor(Color.BLUE)
             answer.text = ""
             arrayTask = generateTaskText(lvl)
           }
@@ -72,8 +72,6 @@ class TrainingActivity : AppCompatActivity() {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 
     fun digit(view: View){
