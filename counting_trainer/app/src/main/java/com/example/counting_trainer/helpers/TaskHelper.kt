@@ -1,6 +1,9 @@
 package com.example.counting_trainer.helpers
 
 import kotlinx.android.synthetic.main.activity_lvlup.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_result.*
+import kotlinx.android.synthetic.main.toolbar.view.*
 
 class TaskHelper(lvl:Int) {
     companion object Factory{
@@ -118,6 +121,22 @@ class TaskHelper(lvl:Int) {
                 }
             }
             return sizeError;
+        }
+
+        fun lvlUpCheck(points: Int): Array<String> {
+            var resultText = ""
+            val success:String = "Уровень повышен!"
+            val fail:String = "Тренируйтесь усерднее!"
+            var secondText = ""
+            if (points >= 8 ) {
+                resultText = "Поздравляем, тест пройден!\n Ваш уровень повышен"
+                secondText = success
+            }
+            else {
+                resultText = "Вы не набрали достаточного количества баллов для повышения.\n Тренируйтесь усердней"
+                secondText = fail
+            }
+            return arrayOf(resultText, secondText)
         }
     }
 }

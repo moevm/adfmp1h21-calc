@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_result.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar.view.*
+import com.example.counting_trainer.helpers.TaskHelper
 
 class ResultActivity : AppCompatActivity() {
 
@@ -23,26 +24,25 @@ class ResultActivity : AppCompatActivity() {
         }
         //End toolbar
         prefs = getSharedPreferences("lvl", MODE_PRIVATE)
-        val success:String = "Уровень повышен!"
-        val fail:String = "Тренируйтесь усерднее!"
         var currentLvl = prefs.getInt("lvl",1)
 
 
         val getIntent = intent
         val points = getIntent.getIntExtra("points", 0)
         score.text = "Ваши Баллы:$points"
-        if (points >= 8 ){
-            restext.text = "Поздравляем, тест пройден!\n Ваш уровень повышен"
-            toolbar.tooltext.text = success
+        val resultTest = TaskHelper.lvlUpCheck(points)
+        if (points >= 8 ) {
+            restext.text = resultTest[0]
+            toolbar.tooltext.text = resultTest[1]
             if (currentLvl <3){
                 var editor = prefs.edit()
                 editor.putInt("lvl", currentLvl+1)
                 editor.commit()
             }
         }
-        else{
-            restext.text = "Вы не набрали достаточного количества баллов для повышения.\n Тренируйтесь усердней"
-            toolbar.tooltext.text = fail
+        else {
+            restext.text = resultTest[0]
+            toolbar.tooltext.text = resultTest[1]
         }
 
         to_main.setOnClickListener {

@@ -154,4 +154,21 @@ class ExampleUnitTest {
         assertEquals("Грубая ошибка!",
             TaskHelper.checkSizeError(arrayTask, (arrayTask[3] - 11).toString()))
     }
+
+    @Test
+    fun testingUpLvl() {
+        val firstFailStr = "Вы не набрали достаточного количества баллов для повышения.\n Тренируйтесь усердней";
+        val secondFailStr = "Тренируйтесь усерднее!";
+        val firstSuccessStr = "Поздравляем, тест пройден!\n Ваш уровень повышен";
+        val secondSuccessStr = "Уровень повышен!";
+        val resFalseOne = TaskHelper.lvlUpCheck(7)
+        val resFalseTwo = TaskHelper.lvlUpCheck(8)
+        val resFalseThree = TaskHelper.lvlUpCheck(9)
+        assertEquals(firstFailStr, resFalseOne[0])
+        assertEquals(secondFailStr, resFalseOne[1])
+        assertEquals(firstSuccessStr, resFalseTwo[0])
+        assertEquals(secondSuccessStr, resFalseTwo[1])
+        assertEquals(firstSuccessStr, resFalseThree[0])
+        assertEquals(secondSuccessStr, resFalseThree[1])
+    }
 }
