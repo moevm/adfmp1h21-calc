@@ -36,7 +36,7 @@ class TaskHelper(lvl:Int) {
                         4->{
                             first_number = (1..10).random()
                             second_number = (1..10).random()
-                            result =  (first_number * second_number )/ second_number
+                            result =  first_number
                             first_number *= second_number
                         }
                     }
@@ -67,7 +67,7 @@ class TaskHelper(lvl:Int) {
                         4->{
                             first_number = (10..20).random()
                             second_number = (10..20).random()
-                            result =  (first_number * second_number )/ second_number
+                            result =  first_number
                             first_number *= second_number
                         }
                     }
@@ -98,7 +98,7 @@ class TaskHelper(lvl:Int) {
                         4->{
                             first_number = (15..30).random()
                             second_number = (15..30).random()
-                            result =  (first_number * second_number )/ second_number
+                            result =  first_number
                             first_number *= second_number
                         }
                     }

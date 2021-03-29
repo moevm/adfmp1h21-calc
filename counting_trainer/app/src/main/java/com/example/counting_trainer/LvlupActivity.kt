@@ -1,6 +1,7 @@
 package com.example.counting_trainer
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -18,17 +19,22 @@ import kotlinx.android.synthetic.main.toolbar.view.*
 
 class LvlupActivity : AppCompatActivity() {
 
-
+    private lateinit var prefs: SharedPreferences
+    private var actPoints = arrayOf(0, 0, 0, 0)
+    private var actFails = arrayOf(0, 0, 0, 0)
+    private var currentAct:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lvlup)
         // Настройка toolbar
         to_home.setOnClickListener {
+            saveActionStat()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
         //End toolbar
+
         val intentWithLvl = getIntent()
         val lvl = intentWithLvl.getIntExtra("lvl", 1)
         if (intentWithLvl.getBooleanExtra("first start", false)) {
@@ -46,21 +52,24 @@ class LvlupActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                if (current_task_num != max_task_num) nextbut.callOnClick()
+                nextbut.callOnClick()
             }
         }
 
         timerObj.start()
 
         nextbut.setOnClickListener {
+            if (arrayTask[3].toString() == answer.text){
+                points++
+                actPoints[currentAct]++
+                answer.setBackgroundColor(Color.GREEN)
+            }
+            else{
+                actFails[currentAct]++
+                answer.setBackgroundColor(Color.RED)
+            }
+
             if(current_task_num<max_task_num) {
-                if (arrayTask[3].toString() == answer.text){
-                    points++
-                    answer.setBackgroundColor(Color.GREEN)
-                }
-                else{
-                    answer.setBackgroundColor(Color.RED)
-                }
                 answer.text = ""
                 current_task_num++
                 arrayTask = generateTaskText(lvl)
@@ -68,6 +77,8 @@ class LvlupActivity : AppCompatActivity() {
                 timerObj.start()
             }
             else {
+                timerObj.cancel()
+                saveActionStat()
                 if(intentWithLvl.getBooleanExtra("first start",false)){
                     val intentForResult = Intent(this, FirstResult::class.java)
                     intentForResult.putExtra("points", points )
@@ -101,6 +112,25 @@ class LvlupActivity : AppCompatActivity() {
         if (answer.text.length<6) answer.text = answer.text.toString() + text
     }
 
+    private fun saveActionStat(){
+        val actions = arrayOf("sum", "diff", "mult", "div")
+        for(i in 0..3){
+            prefs = getSharedPreferences(actions[i] + "_stat", MODE_PRIVATE)
+            val answers = actPoints[i] + actFails[i] + prefs.getInt("answers", 0)
+            actPoints[i] +=  prefs.getInt("correct", 0)
+            actFails[i] += prefs.getInt("fail", 0)
+            val pass = prefs.getInt("pass", 0)
+
+            val editor = prefs.edit()
+            editor.clear()
+            editor.putInt("correct", actPoints[i])
+            editor.putInt("fail", actFails[i])
+            editor.putInt("pass", pass)
+            editor.putInt("answers", answers)
+            editor.commit()
+        }
+    }
+
     fun generateTaskText(lvl:Int):Array<Int>{
         var action = ""
         var arrayTask = TaskHelper.generateTask(lvl)
@@ -109,8 +139,9 @@ class LvlupActivity : AppCompatActivity() {
             2-> action = "-"
             3-> action = "*"
             4-> action = ":"
-
         }
+
+        currentAct = arrayTask[2] - 1
         task.text = arrayTask[0].toString()+ " " + action + " " + arrayTask[1].toString()
         return arrayTask
     }

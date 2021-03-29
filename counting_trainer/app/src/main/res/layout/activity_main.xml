@@ -50,10 +50,10 @@
             android:id="@+id/training"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:text="Тренировочка"
-            android:textColor="@color/white"
-            android:layout_gravity="center"/>
+            android:text="Тренировка"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 
