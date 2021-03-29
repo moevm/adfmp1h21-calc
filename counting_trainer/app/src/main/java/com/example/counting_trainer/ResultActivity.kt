@@ -36,6 +36,7 @@ class ResultActivity : AppCompatActivity() {
             toolbar.tooltext.text = resultTest[1].str
             if (currentLvl < 3) {
                 var editor = prefs.edit()
+                editor.clear()
                 editor.putInt("lvl", currentLvl+1)
                 editor.commit()
             }

@@ -5,31 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TrainingStatistics">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/to_main"
-            android:text="В главное меню"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            />
+        android:gravity="center"
+        android:orientation="vertical">
 
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableLayout>
 
     </LinearLayout>
 
-
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
