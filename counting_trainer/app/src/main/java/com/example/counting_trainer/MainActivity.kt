@@ -17,11 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Настройка toolbar
-        to_home.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+
         //End toolbar
         prefs = getSharedPreferences("lvl", MODE_PRIVATE)
         if (prefs.getInt("lvl", 0 ) == 0 ) {
