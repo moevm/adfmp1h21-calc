@@ -2,12 +2,17 @@ package com.example.counting_trainer
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
+import android.widget.RadioButton
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import com.example.counting_trainer.firstStart.FirstResult
 import com.example.counting_trainer.helpers.TaskHelper
 import kotlinx.android.synthetic.main.activity_lvlup.*
@@ -24,6 +29,7 @@ class LvlupActivity : AppCompatActivity() {
     private var actFails = arrayOf(0, 0, 0, 0)
     private var currentAct:Int = 0
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lvlup)
@@ -43,7 +49,9 @@ class LvlupActivity : AppCompatActivity() {
         var current_task_num = 1
         val max_task_num = 10
         var points = 0
-
+        var btn = group[current_task_num-1] as RadioButton
+        btn.isChecked = true
+        btn.buttonTintList = ColorStateList.valueOf(Color.BLUE)
         var arrayTask = generateTaskText(lvl)
 
         val timerObj = object: CountDownTimer(10000, 1000) {
@@ -62,16 +70,24 @@ class LvlupActivity : AppCompatActivity() {
             if (arrayTask[3].toString() == answer.text){
                 points++
                 actPoints[currentAct]++
-                answer.setBackgroundColor(Color.GREEN)
+
+
+                btn = group[current_task_num-1] as RadioButton
+                btn.buttonTintList = ColorStateList.valueOf(Color.GREEN)
+
             }
             else{
                 actFails[currentAct]++
-                answer.setBackgroundColor(Color.RED)
+                btn = group[current_task_num-1] as RadioButton
+                btn.buttonTintList = ColorStateList.valueOf(Color.RED)
             }
 
             if(current_task_num<max_task_num) {
                 answer.text = ""
                 current_task_num++
+                btn = group[current_task_num-1] as RadioButton
+                btn.isChecked = true
+                btn.buttonTintList = ColorStateList.valueOf(Color.BLUE)
                 arrayTask = generateTaskText(lvl)
                 counter.text = "Вопрос $current_task_num/$max_task_num"
                 timerObj.start()

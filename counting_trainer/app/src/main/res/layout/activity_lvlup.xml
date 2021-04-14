@@ -4,10 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".LvlupActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <RadioGroup
+        android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/counter"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/answer"
@@ -46,11 +127,12 @@
         android:gravity="center"
         android:text="task"
         android:textSize="50sp"
-        app:layout_constraintTop_toBottomOf="@+id/counter"
+        app:layout_constraintTop_toBottomOf="@+id/group"
         tools:layout_editor_absoluteX="0dp" />
 
-    <include layout="@layout/keybord"
-        android:id="@+id/keybord"/>
+    <include
+        android:id="@+id/keybord"
+        layout="@layout/keybord" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
